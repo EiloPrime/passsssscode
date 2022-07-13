@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="renderer" content="webkit">
+    <link href="./static/index.css" rel="stylesheet">
+	<script src="./static/jquery-3.4.1.min.js"></script>
+    <link href="./static/layer.css" rel="stylesheet">
+	<!--<script src="./static/layer.js"></script>-->
+    <title>闽南师范大学-疫情防控管理平台</title>
+</head>
+<body>
+    
+
+<div class="logo">
+    <img src="./static/logo.png">
+</div>
+<div class="container">
+    <div class="pad">
+        <div class="infos">
+            <p class="title">进出场地监控卡</p>
+            <p class="info">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<span id="n"></span></p>
+                <p class="info">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<span id="id"></span></p>
+                <p class="info">所属学院：<span id="ac"></span></p>
+
+            <p class="info">场地名称：<span id="p">校门</span></p>
+            <p class="info">进出类型：<span id="io">进</span></p>
+            <p class="info">扫描时间：<span id="t">2020.10.11 18:34</span></p>
+        </div>
+        <div class="codebox">
+            <div class="codeimg">
+                <img src="./static/qr.png" id="qr">
+            </div>
+            <div class="lb"></div>
+            <div class="rb"></div>
+        </div>
+    </div>
+</div>
+<link href="./static/MonitoringCard.css?dt=202009210957" rel="stylesheet">
+        <link href="./static/menustyle.css?dt=20200429" rel="stylesheet">
+        <script src="./static/menu.js"></script>
+        <div id="cd-nav" class="is-fixed">
+            <a href="javascript:void(0)" class="cd-nav-trigger"><span></span></a>
+            <nav id="cd-main-nav">
+                <ul class="">
+                        <li>
+                            <a href="http://dxg.mnnu.edu.cn/SPCP/Web/Account/ChooseSys">
+                                <img src="./static/icon1.png"> 返回首页
+                            </a>
+                        </li>
+                                        <li>
+                        <a href="http://dxg.mnnu.edu.cn/SPCP/Web/Account/Logout">
+                            <img src="./static/icon3.png"> 安全退出
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+</body>
+<script>
+	const n = prompt("输入姓名")
+	const id = prompt("输入学号")
+	const ac = prompt("输入学院", "化学化工与环境学院")
+	const p = prompt("输入位置", "校门")
+	const io = prompt("进or出", "进")
+	const qr = prompt("加密，可不填")
+	let t = prompt("时间，可不填")
+	if (!t) {
+		const d = new Date()
+		const y = d.getFullYear()
+		const m = d.getMonth()+1
+		const date = d.getDate()
+		const h = d.getHours()
+		const min = d.getMinutes()
+		const time = `${y}.${m}.${date} ${h}:${min}`
+		console.log(time)
+		document.getElementById("t").innerHTML=time
+	} else {
+		document.getElementById("t").innerHTML=t
+	}
+	if (n && id && ac && p && io) {
+		const s = ["n", "id", "ac", "p", "io"]
+		for (i=0; i < s.length; i++ ){
+			document.getElementById(s[i]).innerHTML=`${eval(s[i])}`
+		}
+	}
+	if(qr){
+		document.getElementById("qr").src=`./static/${qr}.jpg`
+	}
+</script>
+</html>
